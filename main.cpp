@@ -1,8 +1,4 @@
-#include <iostream>
-#include <cstring>
-#include <iomanip>
-#include <algorithm>
-#include "Blockchain.cpp"
+#include<bits/stdc++.h>
 using namespace std;
 void printResults(string *arr, int size, string names[],int sizeNames);
 int main(int argv, char* argc[])
