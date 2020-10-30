@@ -106,7 +106,7 @@ class Blockchain {
       return hash == lastHash;
     }
     
-    void addBlock(T* data) throw (string) 
+    void addBlock(Temp* data) throw (string) 
     {
       if(!verify()) 
       {
