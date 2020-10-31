@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include "Blockchain.cpp"
 using namespace std;
 void printResults(string *arr, int size, string names[],int sizeNames);
 int main(int argv, char* argc[])
