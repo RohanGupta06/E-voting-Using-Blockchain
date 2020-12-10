@@ -1,8 +1,5 @@
 /* Final Project
-File Name: TestDriver.cpp
-Programmer:  Emiliia Dyrenkova
-Date Last Modified: 5/23/19
-Problem Statement: Creates a secure system to store ASG elections results and identifies the winner
+
 Overall Plan: 
 1. Create Blockchain class:
   1. private inner class Block:
