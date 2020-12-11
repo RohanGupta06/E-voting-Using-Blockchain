@@ -1,6 +1,5 @@
 /* Final Project
-
-Overall Plan: 
+ 
 1. Create Blockchain class:
   1. private inner class Block:
     - stores previous hash, current hash, generic data, as well as the link (pointer) to the next block.
@@ -60,124 +59,99 @@ Overall Plan:
 #include "authfunctions.h"
 using namespace std;
 void printResults(string *arr, int size, string names[],int sizeNames);
-int max;
+
 int main(int argv, char* argc[])
 {
+Blockchain<string> b;
 while(true) {
-bool value = false;
-bool exitprogram = false;
-    authdb:
-    system("cls");
-    cout << "Welcome to E-voting System\n"
-         << "Sign In Portal\n"
-         << "1) Login\n"
-         << "Select one of the options above or enter 0 to exit.\n"; 
-    int swc;
-    cin >> swc;
-    switch(swc)
-    {
-    case 1:
-    {
-        system("cls");
-        string u, p;
-        cout << "Please enter your credentials.\n"
-             << "Username: ";
-        cin >> u;
-        cout << "Password: ";
-        cin >> p;
-        if(auth(u, p))
-        {             
-            cout << "Authentication Success!\n";
-		Blockchain<string> b;
-	int userChoice = 0;
-  int size;
-  string *arr;
-  string names[]={"Rohan Gupta", "Abhishek Gupta", "Abhay Goyal", "Akash Raj"};
-do {
-	cout<<"Welcome to Evoting System" <<"\n\n";
-	cout<<"Select the choice"<<"\n";
-	if(value==false) { 
-	cout <<"(1) Vote for Candidate"<<"\n"; }
-	cout <<"(2) Tally up the votes"<<"\n";
-	cout <<"(3) EXIT"<<"\n\n";
-    string vote;
-    string *temp;
-		cin >> userChoice;
-		switch (userChoice)
-		{
-      case 1:
-		if(value==false) {
-        	cout<<"College Election\n";
-        	cout<<"Enter the number corresponding to the candidate of your choice:\n";
-        	cout<<"1. Rohan Gupta\n"<<"2. Abhishek Gupta\n"<<"3. Abhay Goyal\n"<<"4. Akash Raj\n";
-        cout<<">> ";
-        cin>>vote;
-        try{
-          b.addBlock(new string(vote));
-	  value=true;
-        }
-        catch(string s){
-          cout<<s<<endl;
-          break;
-        }
-        break;}
-        case 2:
-         // cout<<"The winner is:\n";
-          //go through full chain and calculate the winner (function from blockchain class)
-          arr=b.toArray();
-          printResults(arr, b.getSize(), names, 3);
-          //find most frequent in array
-          
-          //TESTING: PRINT ARRAY
-          /*
-          cout<<"all votes: \n";
-          for(int i=0;i<b.getSize();i++){
-            cout<<arr[i]<<endl;
-          }*/
-          delete[]arr;
-          arr=0;
-          break;
-        case 3:
-          cout<<"Thank you for your vote!\n";
-          break;
-        default:
-          cout<<"Invalid choice.\n";
-          break;
-		}
-	} while (userChoice != 3 && userChoice != 2);
-	cout << endl;
-	//system("PAUSE");
-	//return EXIT_SUCCESS;
-            system("pause");
-            list();
-            exitprogram = true;
-        }
-        else
-        {
-            cout << "Authentication Failure!\n";
-            system("pause");
-        }
+	bool value = false;
+	bool exitprogram = false;
+    	authdb:
+    		cout << "Welcome to E-voting System\n"
+         	<< "Sign In Portal\n"
+         	<< "1) Login\n"
+         	<< "Select one of the options above or enter 0 to exit.\n"; 
+    		int swc;
+    		cin >> swc;
+    	switch(swc)
+    	{
+    		case 1:
+    		{
+        		string u, p;
+        		cout << "Please enter your credentials.\n"
+             		<< "Username: ";
+        		cin >> u;
+        		cout << "Password: ";
+        		cin >> p;
+        		if(auth(u, p))
+        		{             
+            			cout << "Authentication Success!\n";
+				
+				int userChoice = 0;
+  				static int size;
+  				string *arr;
+  				string names[]={"Rohan Gupta", "Abhishek Gupta", "Abhay Goyal", "Akash Raj"};
+				do {
+					cout<<"Welcome to Evoting System" <<"\n\n";
+					cout<<"Select the choice"<<"\n";
+					if(value==false) { 
+					cout <<"(1) Vote for Candidate"<<"\n"; }
+					cout <<"(2) Tally up the votes"<<"\n";
+					cout <<"(3) EXIT"<<"\n\n";
+    					string vote;
+    					string *temp;
+					cin >> userChoice;
+					switch (userChoice)
+					{
+      						case 1:
+							if(value==false) {
+        						cout<<"College Election\n";
+        						cout<<"Enter the number corresponding to the candidate of your choice:\n";
+        						cout<<"1. Rohan Gupta\n"<<"2. Abhishek Gupta\n"<<"3. Abhay Goyal\n"<<"4. Akash Raj\n";
+        						cout<<">> ";
+        						cin>>vote;
+        						try{
+          							b.addBlock(new string(vote));
+	  							value=true;
+        						}
+        						catch(string s){
+          						cout<<s<<endl;
+          						break;
+        						}
+        						break;}
+        					case 2:
+         						arr=b.toArray();
+          						printResults(arr, b.getSize(), names, 3);
+							delete[]arr;
+          						arr=0;
+          						break;
+        					case 3:
+          						cout<<"Thank you for your vote!\n";
+          						break;
+        					default:
+          						cout<<"Invalid choice.\n";
+          						break;
+					}
+				} while (userChoice != 3 && userChoice != 2);
+				cout << endl;
+        		}
+        		else
+        		{
+            			cout << "Authentication Failure!\n";
+           		}
         break;
     }
     
-    case 0:
-    {
-        system("cls");
-        cout << "Bye!";
-        exitprogram = true;
+ 
     }
-    }
-    if(exitprogram == false)
-    {
-        goto authdb;
-    }
+    
   }
 }
 
 void printResults(string *arr, int size, string names[],int sizeNames){
   sort(arr, arr+size);
-  max=0;
-  int count=1;
+  static int max=0;
+  static int count=1;
   string current=arr[0], maxResult=arr[0];
   for(int i=1;i<size;i++){
     if(current==arr[i]){
