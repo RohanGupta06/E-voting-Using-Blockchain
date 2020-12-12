@@ -11,7 +11,7 @@ int auth(string u, string p)
 
     bool authstate = false;
     fstream authfile;
-    authfile.open("user.db");
+    authfile.open("user.txt");
     if(authfile.is_open())
     {   
         vector<string> filelines;
@@ -26,7 +26,7 @@ int auth(string u, string p)
         istream_iterator<string> ubegin(uss), uend;//Users iterators
         istream_iterator<string> pbegin(pss), pend;//Passwords iterators
 	istream_iterator<int> lbegin(lss), lend;
-        vector<string> users(ubegin, uend); //Where we store every user
+        vector<string> users(ubegin, uend); //Where we store every user 1 2 3 4
         vector<string> passwords(pbegin, pend); //Where we store every password.
 	vector<int> locks(lbegin, lend);
 	
@@ -36,7 +36,7 @@ int auth(string u, string p)
             {
                 authfile.close();
                 authstate = true;
-		users.erase(users.begin()+i);
+		
 		
                 break;
             } 
