@@ -26,8 +26,7 @@ class Blockchain {
           				m_hash = sha256(s.str());
         			}
 
-        			//if class, T/U has to have default constructor
-        			//creates genesis block that has next pointing to 0
+        			
         			Block() {
          		 		m_prevHash = sha256("genesis block");
           				m_next = 0;
@@ -66,18 +65,10 @@ class Blockchain {
       				m_head = new Block<T>();
       				m_tail = m_head;
       				string lastHash = getLastHash();
-      				//create binary file with last hash
       				ofstream outfile("lastHash.dat", ios::binary);
       				outfile.write(lastHash.c_str(),lastHash.size());
       				outfile.close();
       				m_size=0;
-      				/*TESTING BINARY FILE (Reading)
-      				ifstream infile("lastHash.dat", ios::binary);
-      				string hash;
-      				hash.resize(m_lastHash.size());
-      				infile.read(&hash[0], m_lastHash.size());
-      				infile.close();
-      				cout<<"\nFile data: "<<hash<<endl;*/
     			}
     
     			int getSize() {
@@ -111,11 +102,8 @@ class Blockchain {
     	if(!verify()) {
         	throw "Blockchain was compromised.\n";
       	}
-      	//tail's next becomes new block with the tail's hash as previous hash, and it is pointing to null
       	m_tail->m_next = new Block<T>(m_tail->m_hash, data, 0);
-      	//new block is the new tail
      	 m_tail = m_tail->m_next;
-      	//write new last hash to file
       	string lastHash = getLastHash();
       	ofstream outfile("lastHash.dat", ios::binary);
       	outfile.write(lastHash.c_str(),lastHash.size());
