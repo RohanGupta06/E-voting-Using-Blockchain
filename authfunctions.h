@@ -20,14 +20,14 @@ int auth(string u, string p)
         {
             filelines.push_back(procstring);
         }
-        stringstream uss(filelines[0]);//Users stream
-        stringstream pss(filelines[1]);//Paswords stream
+        stringstream uss(filelines[0]);
+        stringstream pss(filelines[1]);
 	stringstream lss(filelines[2]);
-        istream_iterator<string> ubegin(uss), uend;//Users iterators
-        istream_iterator<string> pbegin(pss), pend;//Passwords iterators
+        istream_iterator<string> ubegin(uss), uend;
+        istream_iterator<string> pbegin(pss), pend;
 	istream_iterator<int> lbegin(lss), lend;
-        vector<string> users(ubegin, uend); //Where we store every user 1 2 3 4
-        vector<string> passwords(pbegin, pend); //Where we store every password.
+        vector<string> users(ubegin, uend); 
+        vector<string> passwords(pbegin, pend); 
 	vector<int> locks(lbegin, lend);
 	
         for(int i=0; i<users.size() || i<passwords.size() || i<locks.size();i++)//Do this while we haven't parsed the entire database
